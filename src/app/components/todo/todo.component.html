@@ -1,7 +1,7 @@
-<div class="w-full flex flex-col  justify-center items-center bg-[#E8A87C] rounded-sm p-4">
-    <h1 class="text-white font-bold self-center	">Helloo Welcome....</h1>
+<div class="w-full flex flex-col  justify-center items-center bg-[#E8A87C] rounded-sm p-4 shadow-xl">
+    <h1 class="text-white font-bold self-center	mb-3">Helloo Welcome....</h1>
     <div class=" w-full   flex flex-col ">
-        <app-form [title]="ToDo" [placeholder]="placeHolder" (formSubmit)="addToDo($event)"></app-form>
+        <app-form [title]="ToDo" [placeholder]="placeHolder" (formSubmit)="addToDo($event)" class="mb-3"></app-form>
         <div *ngFor="let todo of todos; let i = index">
             <div class="w-full h-full flex  mt-2 p-3 rounded-md"
                 [ngClass]="{'bg-blue-400':todo.done, 'bg-white':!todo.done}">

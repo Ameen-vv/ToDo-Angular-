@@ -1,7 +1,7 @@
-<div>
+<div class="shadow-xl">
     <form  class="flex w-full justify-center" (ngSubmit)="onSubmit()">
-        <input type="text" class="w-1/2 border p-2" title="{{title}}" 
+        <input type="text" class="w-1/2 border p-2 rounded " title="{{title}}" 
             placeholder="{{placeholder}}" [(ngModel)] = 'ToDoTask' name="{{title}}" >
-        <button class="p-4 bg-[#41B3A3] text-white">add todo</button>
+        <button class="p-4 bg-[#41B3A3] text-white rounded">add todo</button>
     </form>
 </div>
