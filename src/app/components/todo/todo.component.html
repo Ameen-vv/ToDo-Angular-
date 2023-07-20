@@ -1,0 +1,20 @@
+<div class="w-full flex flex-col  justify-center items-center bg-[#E8A87C] p-4">
+    <h1 class="text-white font-bold self-center	">Helloo Welcome....</h1>
+    <div class=" w-full   flex flex-col ">
+        <div>
+            <form (ngSubmit)="addTodo()" class="flex w-full justify-center">
+                <input type="text" class="w-1/2 border p-2" name="todo" title="todo" [(ngModel)]='inputTodo'
+                    placeholder="add you tasks">
+                <button class="p-4 bg-black text-white">add todo</button>
+            </form>
+        </div>
+
+        <div *ngFor="let todo of todos; let i = index">
+            <div class="w-full h-full flex bg-white mt-2 p-3">
+                <p class="me-3 ">{{todo.task}}</p>
+                <button class="me-3 bg-purple-500 ms-auto" (click)="doneTodo(i)">Done</button>
+                <button class="bg-slate-500" (click)="removeTodo(i)">Remove</button>
+            </div>
+        </div>
+    </div>
+</div>
