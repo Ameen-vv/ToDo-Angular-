@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TODO } from 'src/app/models';
+import { TODO } from 'src/app/models/ToDoModel';
 import { NgForm } from '@angular/forms'
+import { ToDoService } from 'src/app/services/to-do.service';
 
 
 @Component({
@@ -9,33 +10,26 @@ import { NgForm } from '@angular/forms'
   styleUrls: ['./todo.component.css']
 })
 export class TodoComponent implements OnInit {
-  todos: TODO[] = []
+  todos: TODO[] = [] ;
+  ToDo:string = 'ToDo' ;
+  placeHolder:string = 'add your todo' ;
 
-  inputTodo : string = ''
+  constructor(private todoService : ToDoService){} ;
 
   ngOnInit(): void {
-    const storedTodos:string | null  = localStorage.getItem('todo') 
-    this.todos = storedTodos ? JSON.parse(storedTodos) : []
-  }
+      this.todos = this.todoService.getToDo() ;    
+  };
 
-  addTodo(): void {
-    this.todos.push({
-      task: this.inputTodo,
-      done: false
-    })
-    localStorage.setItem('todo', JSON.stringify(this.todos))
-    this.inputTodo = ''
-  }
+  doneTodo(i : number){
+    this.todoService.doneTodo(i) ;
+  };
 
-  removeTodo(i : number):void{
-    this.todos.splice(i,1)
-    localStorage.setItem('todo', JSON.stringify(this.todos)) 
-  }
+  removeTodo(i : number){
+    this.todoService.removeTodo(i) ;
+  };
 
-  doneTodo(i : number):void{
-    this.todos[i].done = true
-    localStorage.setItem('todo', JSON.stringify(this.todos))
-  }
+  addToDo(task:string){
+    this.todoService.addTodo(task) ;
+  };
 
-
-}
+};

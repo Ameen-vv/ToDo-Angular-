@@ -1,19 +1,17 @@
-<div class="w-full flex flex-col  justify-center items-center bg-[#E8A87C] p-4">
+<div class="w-full flex flex-col  justify-center items-center bg-[#E8A87C] rounded-sm p-4">
     <h1 class="text-white font-bold self-center	">Helloo Welcome....</h1>
     <div class=" w-full   flex flex-col ">
-        <div>
-            <form (ngSubmit)="addTodo()" class="flex w-full justify-center">
-                <input type="text" class="w-1/2 border p-2" name="todo" title="todo" [(ngModel)]='inputTodo'
-                    placeholder="add you tasks">
-                <button class="p-4 bg-black text-white">add todo</button>
-            </form>
-        </div>
-
+        <app-form [title]="ToDo" [placeholder]="placeHolder" (formSubmit)="addToDo($event)"></app-form>
         <div *ngFor="let todo of todos; let i = index">
-            <div class="w-full h-full flex bg-white mt-2 p-3">
-                <p class="me-3 ">{{todo.task}}</p>
-                <button class="me-3 bg-purple-500 ms-auto" (click)="doneTodo(i)">Done</button>
-                <button class="bg-slate-500" (click)="removeTodo(i)">Remove</button>
+            <div class="w-full h-full flex  mt-2 p-3 rounded-md"
+                [ngClass]="{'bg-blue-400':todo.done, 'bg-white':!todo.done}">
+                <p class="me-3 ">{{i + 1}}. {{todo.task}}</p>
+                <div class="flex ms-auto">
+                    <button class="me-3 bg-purple-500 ms-auto p-1 px-5 text-white text-[12px] rounded-3xl"
+                        [ngClass]="{'hidden':todo.done}" (click)="doneTodo(i)">Done</button>
+                    <button class="bg-red-500 p-1 px-5 text-white text-[12px] rounded-3xl "
+                        (click)="removeTodo(i)">Remove</button>
+                </div>
             </div>
         </div>
     </div>
